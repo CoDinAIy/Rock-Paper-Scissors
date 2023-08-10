@@ -1,52 +1,46 @@
-function getComputerChoice() {
-    const computerChoices = ["Rock", "Paper", "Scissors"] ;
-     randomSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)] ;
-    return randomSelection
-}
-
-let computerSelection = getComputerChoice()
-
-function validAnswerCheck() {
-    let correct = false ;
-    while (! correct) {
-        let input = prompt("Enter Rock Paper or Scissors") 
-        if (input === "rock" || input === "paper" || input === "scissors") {
-            correct = true 
-            return input 
-        }
+function wholeGame() {
+    function getComputerChoice() {
+        const computerChoices = ["Rock", "Paper", "Scissors"] ;
+         randomSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)] ;
+        return randomSelection
     }
-    }
-let playerSelection = validAnswerCheck()
+    
+    let computerSelection = getComputerChoice()
+    
 
-function rockPaperScissorsRound (computerSelection, playerSelection) {
-    let gameResult ;
-    if (computerSelection === "Rock") {
-        if (playerSelection === "rock") {
-            gameResult = "Draw!"
-        } else if (playerSelection === "paper") {
-            gameResult = "You win! Paper beats Rock"
+    
+    function rockPaperScissorsRound (computerSelection, playerSelection) {
+        if (computerSelection === "Rock") {
+            if (playerSelection === "Rock") {
+                gameResult = "Draw!"
+            } else if (playerSelection === "Paper") {
+                gameResult = "You win! Paper beats Rock"
+            } else {
+                gameResult = "You lose! Rock beats Scissors"
+            }
+        } else if (computerSelection === "Paper") {
+            if (playerSelection === "Rock") {
+                gameResult = "You lose! Paper beats Rock"
+            } else if (playerSelection === "Paper") {
+                gameResult = "Draw!"
+            } else {
+                gameResult = "You win! Scissors beats Paper"
+            }
         } else {
-            gameResult = "You lose! Rock beats Scissors"
+            if (playerSelection === "Rock") {
+                gameResult = "You win! Rock beats Scissors"
+            } else if (playerSelection === "Paper") {
+                gameResult = "You lose! Scissors beats Paper"
+            } else {
+                gameResult = "Draw!"
+            }
         }
-    } else if (computerSelection === "Paper") {
-        if (playerSelection === "rock") {
-            gameResult = "You win! Paper Beats Rock"
-        } else if (playerSelection === "paper") {
-            gameResult = "Draw!"
-        } else {
-            gameResult = "You lose! Scissors beats Paper"
-        }
-    } else {
-        if (playerSelection === "rock") {
-            gameResult = "You lose! Rock beats Scissors"
-        } else if (playerSelection === "paper") {
-            gameResult = "You win! Scissors beats Paper"
-        } else {
-            gameResult = "Draw!"
-        }
+        return gameResult
     }
-    return gameResult
-}
-console.log("Computer chose: " + computerSelection)
-console.log("You chose: "  + playerSelection)
-rockPaperScissorsRound(computerSelection, playerSelection)
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
+         compResult = "Computer chose: " + computerSelection
+         playerResult = "Player chose: " + playerSelection
+         roundOutcome = rockPaperScissorsRound(computerSelection, playerSelection)
+        
+    }
+ 

@@ -3,9 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="java.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="container">
+        <div class="buttons">
+            <button id="Rock"><img src="images/rocK.jpeg"></button>
+            <button id="Paper"><img src="images/paper.jpeg"></button>
+            <button id="Scissors"><img src="images/scissors.jpeg"></button>
+        </div>
+    <div id="results">
+    </div>
 </body>
 </html>
+
+<script>
+
+let computerScore = 0;
+let playerScore = 0;
+
+const container = document.querySelector("#results") ;
+
+const score = document.createElement("div") ;
+score.classList.add("score") ;
+score.style.cssText = "color: white; font-size: 24px;"
+container.appendChild(score) ;
+
+const gameResult = document.createElement("div") ;
+gameResult.classList.add("roundResult") ;
+gameResult.style.cssText = "color: white; font-size: 24px;"
+container.appendChild(gameResult) ;
+
+function wholeGame(e) {
+    while (computerScore < 5 && playerScore < 5) {
+        let randomSelection ;    
+        function getComputerChoice() {
+            const computerChoices = ["Rock", "Paper", "Scissors"] ;
+            randomSelection = computerChoices[Math.floor(Math.random() * computerChoices.length)] ;
+            return randomSelection ;
+        }
+
+        let computerSelection = getComputerChoice() ;
+        let playerSelection = e.target.id ;
+
+        function round(computerSelection, playerSelection) {
+            if (computerSelection === "Rock") {
+                if (playerSelection === "Rock") {
+                    gameResult.textContent = "Computer chose Rock. Draw!" ;
+                    score.textContent = `Score = ${playerScore} : ${computerScore}` ;
+                } else if (playerSelection === "Paper") {
+                    gameResult.textContent = "Computer chose Rock. You Win!" ;
+                    score.textContent = `Score = ${playerScore += 1} : ${computerScore}` ;
+                } else if (playerSelection === "Scissors") {
+                    gameResult.textContent = "Computer chose Rock. You Lose!" ;
+                    score.textContent = `Score = ${playerScore} : ${computerScore += 1}` ;
+                }
+            } else if (computerSelection === "Paper") {
+                if (playerSelection === "Rock") {
+                    gameResult.textContent = "Computer chose Paper. You Lose!" ;
+                    score.textContent = `Score = ${playerScore} : ${computerScore += 1}` ;
+                } else if (playerSelection === "Paper") {
+                    gameResult.textContent = "Computer chose Paper. Draw!" ;
+                    score.textContent = `Score = ${playerScore} : ${computerScore}` ;
+                } else if (playerSelection === "Scissors") {
+                    gameResult.textContent = "Computer chose Paper. You Win!" ;
+                    score.textContent = `Score = ${playerScore += 1} : ${computerScore}` ;
+                }  
+            } else if (computerSelection === "Scissors") {
+                if (playerSelection === "Rock") {
+                    gameResult.textContent = "Computer chose Scissors. You Win!" ;
+                    score.textContent = `Score = ${playerScore += 1} : ${computerScore}` ;
+                } else if (playerSelection === "Paper") {
+                    gameResult.textContent = "Computer chose Paper. You Lose!" ;
+                    score.textContent = `Score = ${playerScore} : ${computerScore += 1}` ;
+                } else if (playerSelection === "Scissors") {
+                    gameResult.textContent = "Computer chose Scissors. Draw!" ;
+                    score.textContent = `Score = ${playerScore} : ${computerScore}` ;
+                }  
+            } else {
+                return ;
+            }
+        } 
+        return round(playerSelection, computerSelection) ;  
+    } 
+    gameResult.textContent = "Game Over"
+}
+
+
+
+const buttons = document.querySelectorAll("button") ;
+buttons.forEach((button) => {
+button.addEventListener("click", wholeGame) ;
+})
+
+</script>
