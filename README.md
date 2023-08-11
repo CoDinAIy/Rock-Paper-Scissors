@@ -11,3 +11,5 @@ To run this program:
 
 *UPDATE*
 Added user interface and clicks of buttons to play with computer instead of running solely on console
+
+live link: https://codinaiy.github.io/Rock-Paper-Scissors-Game/
