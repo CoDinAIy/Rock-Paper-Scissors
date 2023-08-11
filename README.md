@@ -8,3 +8,6 @@ To run this program:
 3. Press Ctrl+Shift+J (Windows, Linux) or Command+Shift+J (macOS)
 4. Navigate from "Elements" to "Console" on the top 
 5. Paste the code, follow the game instructions and enjoy!
+
+*UPDATE*
+Added user interface and clicks of buttons to play with computer instead of running solely on console
